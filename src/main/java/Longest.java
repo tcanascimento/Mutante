@@ -8,35 +8,41 @@ import java.util.Scanner;
 
 public class Longest {
 
-    public static void main(String[] args){
+    private int dec_num, rem, quot, i=1, j;
+    private int bin_num[] = new int[100];
+    private String binary_str="";
+    private int length = 0;
+    private int ctr = 0;
 
-        int dec_num, rem, quot, i=1, j;
-        int bin_num[] = new int[100];
-        Scanner scan = new Scanner(System.in);
+    public Longest(int decimal){
+        this.dec_num = decimal;
+        this.quot = dec_num;
+    }
 
-        System.out.print("Input a Decimal Number : ");
-        dec_num = scan.nextInt();
-
-        quot = dec_num;
-
-        while(quot != 0)
-        {
+    public void generateQuot(){
+        while(this.quot != 0){
             bin_num[i++] = quot%2;
             quot = quot/2;
         }
-        String binary_str="";
-        System.out.print("Binary number is: ");
-        for(j=i-1; j>0; j--)
-        {
+    }
+
+    public String printBinary(){
+        for(j=i-1; j>0; j--) {
             binary_str = binary_str + bin_num[j];
         }
-        System.out.print(binary_str);
-        i = binary_str.length()-1;
-        while(binary_str.charAt(i)=='0') {
+        return binary_str;
+    }
+
+    public int cleanBinary(){
+        this.i = this.binary_str.length()-1;
+        while(binary_str.charAt(i) == '0'){
             i--;
         }
-        int length = 0;
-        int ctr = 0;
+        return i;
+    }
+
+    public int getLongestSequence(){
+
         for(; i>=0; i--) {
             if(binary_str.charAt(i)=='1') {
                 length = Math.max(length, ctr);
@@ -45,7 +51,6 @@ public class Longest {
                 ctr++;
             }
         }
-        length = Math.max(length, ctr);
-        System.out.println("\nLength of the longest sequence: "+length);
+        return Math.max(length, ctr);
     }
 }
