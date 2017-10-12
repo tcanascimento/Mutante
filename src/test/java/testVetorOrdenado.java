@@ -1,11 +1,10 @@
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
-import java.util.List;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Created by thialves

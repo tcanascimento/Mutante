@@ -6,6 +6,13 @@ import java.util.Scanner;
  * For testeIntegracao
  **/
 
+/**
+ * deve receber um decimal como input e retornar o número em binário, bem como o tamanho da maior sequência, de repetições.
+ * ex.: 121212 tem como tamanho 2, 1000, tem como tamanho 1, 12345 tem como tamanho 6, 123456, tem como tamanho 3
+ * @author thialves
+ *
+ */
+
 public class Longest {
 
     private int dec_num, rem, quot, i=1, j;
@@ -21,18 +28,23 @@ public class Longest {
 
     public void generateQuot(){
         while(this.quot != 0){
-            bin_num[i++] = quot%2;
-            quot = quot/2;
+            this.bin_num[i++] = quot%2;
+            this.quot = quot/2;
         }
+    }
+
+    public int getQuot(){
+        return this.quot;
     }
 
     public String printBinary(){
         for(j=i-1; j>0; j--) {
-            binary_str = binary_str + bin_num[j];
+            this.binary_str = binary_str + this.bin_num[j];
         }
         return binary_str;
     }
-
+    
+    //retira os 'zeros' à direita do numero, retornando a posição do índice com o último 1
     public int cleanBinary(){
         this.i = this.binary_str.length()-1;
         while(binary_str.charAt(i) == '0'){
@@ -40,11 +52,18 @@ public class Longest {
         }
         return i;
     }
-
+    
+    /**
+     * Retorna o índice da posição do último 1
+     * @return
+     */
+    public int getI() {
+    		return this.i;
+    }
+    
     public int getLongestSequence(){
-
-        for(; i>=0; i--) {
-            if(binary_str.charAt(i)=='1') {
+        for(; this.i>=0; this.i--) {
+            if(this.binary_str.charAt(this.i)=='1') {
                 length = Math.max(length, ctr);
                 ctr = 0;
             } else {
@@ -53,4 +72,5 @@ public class Longest {
         }
         return Math.max(length, ctr);
     }
+
 }
